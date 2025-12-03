@@ -7,9 +7,14 @@ import in.kenz.dashboard.dao.impl.LoanDaoImpl;
 import in.kenz.dashboard.entity.Book;
 import in.kenz.dashboard.entity.Loan;
 import in.kenz.dashboard.service.BookService;
+import in.kenz.dashboard.util.EntityManagerFactoryProvider;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.criteria.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class BookServiceImpl implements BookService {
 
@@ -59,47 +64,85 @@ public class BookServiceImpl implements BookService {
         bookDao.deleteByBookId(id);
     }
 
-
-
     // ------------------------------
-    //  DASHBOARD METHODS
+    //  DASHBOARD METHODS (upgraded)
     // ------------------------------
 
+    /**
+     * Return list of Books currently loaned out.
+     * Criteria steps:
+     * 1. get CriteriaBuilder
+     * 2. create CriteriaQuery<Book>
+     * 3. root = Loan
+     * 4. join Loan -> Book
+     * 5. predicate: returnedDate IS NULL
+     * 6. select bookJoin and execute
+     */
     @Override
     public List<Book> findLoanedBooks() {
-        List<Loan> activeLoans = loanDao.findActiveLoans();
-        List<Book> result = new ArrayList<>();
+        EntityManager em = EntityManagerFactoryProvider.getEntityManager();
+        try {
+            // 1. CriteriaBuilder
+            CriteriaBuilder cb = em.getCriteriaBuilder();
 
-        for (Loan loan : activeLoans) {
-            if (loan.getLoanAvailedBook() != null) {
-                result.add(loan.getLoanAvailedBook());
-            }
+            // 2. CriteriaQuery<Book>
+            CriteriaQuery<Book> cq = cb.createQuery(Book.class);
+
+            // 3. Root = Loan
+            Root<Loan> loanRoot = cq.from(Loan.class);
+
+            // 4. Join Loan -> Book
+            // use inner join (loan must have a book)
+            Join<Loan, Book> bookJoin = loanRoot.join("loanAvailedBook", JoinType.INNER);
+
+            // 5. Predicate: returnedDate IS NULL (active loans)
+            Predicate activeLoan = cb.isNull(loanRoot.get("returnedDate"));
+
+            // 6. SELECT bookJoin WHERE activeLoan
+            cq.select(bookJoin).where(activeLoan).distinct(true);
+
+            return em.createQuery(cq).getResultList();
+        } finally {
+            em.close();
         }
-
-        return result;
     }
 
+    /**
+     * Return list of Books currently available (no active Loan).
+     * Implementation uses a NOT EXISTS subquery:
+     * WHERE NOT EXISTS (
+     *   SELECT 1 FROM Loan l WHERE l.loanAvailedBook = book AND l.returnedDate IS NULL
+     * )
+     */
     @Override
     public List<Book> findAvailableBooks() {
-        List<Book> allBooks = bookDao.findAll();
-        List<Loan> activeLoans = loanDao.findActiveLoans();
+        EntityManager em = EntityManagerFactoryProvider.getEntityManager();
+        try {
+            // 1. CriteriaBuilder
+            CriteriaBuilder cb = em.getCriteriaBuilder();
 
-        // Collect IDs of loaned books
-        List<Long> loanedBookIds = new ArrayList<>();
-        for (Loan loan : activeLoans) {
-            if (loan.getLoanAvailedBook() != null) {
-                loanedBookIds.add(loan.getLoanAvailedBook().getBookId());
-            }
+            // 2. CriteriaQuery<Book>
+            CriteriaQuery<Book> cq = cb.createQuery(Book.class);
+
+            // 3. Root = Book
+            Root<Book> bookRoot = cq.from(Book.class);
+
+            // 4. Subquery setup
+            Subquery<Long> sub = cq.subquery(Long.class);
+            Root<Loan> loanRoot = sub.from(Loan.class);
+
+            // match loan.loanAvailedBook == bookRoot AND returnedDate IS NULL
+            Predicate sameBook = cb.equal(loanRoot.get("loanAvailedBook"), bookRoot);
+            Predicate notReturned = cb.isNull(loanRoot.get("returnedDate"));
+            sub.select(cb.literal(1L)).where(cb.and(sameBook, notReturned));
+
+            // 5. WHERE NOT EXISTS(sub)
+            cq.select(bookRoot).where(cb.not(cb.exists(sub)));
+
+            // 6. execute
+            return em.createQuery(cq).getResultList();
+        } finally {
+            em.close();
         }
-
-        // Filter available books
-        List<Book> available = new ArrayList<>();
-        for (Book book : allBooks) {
-            if (!loanedBookIds.contains(book.getBookId())) {
-                available.add(book);
-            }
-        }
-
-        return available;
     }
 }

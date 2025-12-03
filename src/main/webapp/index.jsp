@@ -9,7 +9,7 @@
 
         .left-side {
             flex: 1;
-            background-image: url('images/library.jpg');
+            background-image: url('images/library.png');
             background-size: cover;
             background-position: center;
         }

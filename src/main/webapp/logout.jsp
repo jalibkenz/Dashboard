@@ -1,12 +1,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Logged Out</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <style>
         body { margin: 0; font-family: Arial, sans-serif; height: 100vh; display: flex; }
-        .left-side { flex: 1; background-image: url('images/library.jpg'); background-size: cover; background-position: center; }
+        .left-side { flex: 1; background-image: url('images/library.png'); background-size: cover; background-position: center; }
         .right-side { flex: 1; display: flex; justify-content: center; align-items: center; background: #f4f4f4; }
 
         .logout-box {
@@ -16,8 +21,15 @@
         .logout-box h2 { text-align: center; margin-bottom: 6px; }
         .logout-message { text-align: center; color: #007c2e; margin-bottom: 20px; }
 
+        .debug-info {
+            background: #fff3cd; border: 1px solid #ffeaa7; padding: 15px;
+            border-radius: 5px; margin-bottom: 20px; font-family: monospace; font-size: 14px;
+        }
+        .debug-info strong { color: #856404; }
+
         .loan-list table { width: 100%; border-collapse: collapse; }
-        .loan-list th, .loan-list td { padding: 8px; border-bottom: 1px solid #eee; }
+        .loan-list th, .loan-list td { padding: 8px; border-bottom: 1px solid #eee; text-align: left; }
+        .loan-list th { background: #f8f9fa; font-weight: bold; }
 
         .login-again { text-align: center; margin-top: 20px; }
         .login-again a {
@@ -29,12 +41,10 @@
 </head>
 
 <body>
-
 <div class="left-side"></div>
 
 <div class="right-side">
     <div class="logout-box">
-
         <h2>You Have Logged Out</h2>
         <div class="logout-message">Thank you — please return your books on time.</div>
 
@@ -50,8 +60,8 @@
                         <tbody>
                         <c:forEach var="book" items="${loanedBooks}">
                             <tr>
-                                <td><c:out value="${book.title}" /></td>
-                                <td><c:out value="${book.author}" /></td>
+                                <td><c:out value="${book.bookName}" /></td>
+                                <td><c:out value="${book.bookAuthor}" /></td>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -66,9 +76,7 @@
         <div class="login-again">
             <a href="index.jsp">Login Again</a>
         </div>
-
     </div>
 </div>
-
 </body>
 </html>

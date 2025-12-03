@@ -2,12 +2,13 @@ package in.kenz.dashboard.servlet;
 
 import in.kenz.dashboard.entity.Book;
 import in.kenz.dashboard.entity.User;
-
 import in.kenz.dashboard.service.BookService;
 import in.kenz.dashboard.service.impl.BookServiceImpl;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,43 +18,57 @@ public class DashboardServlet extends HttpServlet {
 
     private final BookService bookService = new BookServiceImpl();
 
-    // Simple test servlet: always forwards empty lists so the JSP renders
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // require login (same check your JSP expects)
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+
+        // 1. Login check
         HttpSession session = req.getSession(false);
-        User loggedIn = (session != null) ? (User) session.getAttribute("loggedInUser") : null;
-        if (loggedIn == null) {
-            resp.sendRedirect("index.jsp?error=Please+login+first");
+        User loggedInUser = (session != null)
+                ? (User) session.getAttribute("loggedInUser")
+                : null;
+
+        if (loggedInUser == null) {
+            // redirect to login page with message
+            resp.sendRedirect(req.getContextPath()
+                    + "/index.jsp?error=Please+login+first");
             return;
         }
 
-        // Provide empty lists so dashboard.jsp renders fine
+        // 2. Load data using updated BookServiceImpl (Criteria-based)
         List<Book> loanedBooks;
         List<Book> availableBooks;
 
         try {
-            // these methods must be implemented in BookService / BookServiceImpl
-            loanedBooks = bookService.findLoanedBooks();
-            availableBooks = bookService.findAvailableBooks();
+            loanedBooks = bookService.findLoanedBooks();       // books currently loaned
+            availableBooks = bookService.findAvailableBooks(); // books not loaned
+
             if (loanedBooks == null) loanedBooks = new ArrayList<>();
             if (availableBooks == null) availableBooks = new ArrayList<>();
+
         } catch (Exception e) {
-            // fail-safe: log and fallback so JSP still renders
             e.printStackTrace();
+
+            // Fail-safe fallback so JSP loads
             loanedBooks = new ArrayList<>();
-            availableBooks = bookService.findAll(); // best-effort: show all books if available
+
+            // At least show all books if availableBooks query fails
+            availableBooks = bookService.findAll();
             if (availableBooks == null) availableBooks = new ArrayList<>();
         }
 
+        // 3. Supply data to JSP via request attributes (not session)
         req.setAttribute("loanedBooks", loanedBooks);
         req.setAttribute("availableBooks", availableBooks);
-        req.getRequestDispatcher("dashboard.jsp").forward(req, resp);
+
+        // 4. Forward to dashboard JSP
+        req.getRequestDispatcher("/dashboard.jsp").forward(req, resp);
     }
 
+    // POST delegates to GET
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // treat POST same as GET for convenience
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
         doGet(req, resp);
     }
 }

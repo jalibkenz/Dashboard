@@ -15,7 +15,7 @@
         /* LEFT SIDE IMAGE */
         .left-side {
             flex: 1;
-            background-image: url('images/library.jpg'); /* same image as index.jsp */
+            background-image: url('images/library.png'); /* same image as index.jsp */
             background-size: cover;
             background-position: center;
         }
