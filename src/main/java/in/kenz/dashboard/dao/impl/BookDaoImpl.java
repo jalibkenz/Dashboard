@@ -2,6 +2,7 @@ package in.kenz.dashboard.dao.impl;
 
 import in.kenz.dashboard.dao.BookDao;
 import in.kenz.dashboard.entity.Book;
+import in.kenz.dashboard.entity.User;
 import in.kenz.dashboard.util.EntityManagerFactoryProvider;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
@@ -10,11 +11,11 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 
+import java.util.List;
+
 public class BookDaoImpl implements BookDao {
     @Override
     public void save(Book book) {
-        if(book==null) throw new IllegalArgumentException("Book cannot be null");
-
         try(EntityManager entityManager = EntityManagerFactoryProvider.getEntityManager()){
             EntityTransaction transaction = entityManager.getTransaction();
             try{
@@ -61,7 +62,6 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public Book findByBookCategory(String bookCategory) {
-        if(bookCategory==null) throw new IllegalArgumentException("Book category cannot be null");
 
         try(EntityManager entityManager = EntityManagerFactoryProvider.getEntityManager()){
             CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
@@ -78,7 +78,6 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public Book findByBookAuthor(String bookAuthor) {
-        if(bookAuthor==null) throw new IllegalArgumentException("Book Author cannot be null");
         try(EntityManager entityManager = EntityManagerFactoryProvider.getEntityManager()){
             CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
             CriteriaQuery<Book> criteriaQuery = criteriaBuilder.createQuery(Book.class);
@@ -91,12 +90,25 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
+    public List<Book> findAll() {
+        try (EntityManager entityManager = EntityManagerFactoryProvider.getEntityManager()) {
+
+            CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+            CriteriaQuery<Book> criteriaQuery = criteriaBuilder.createQuery(Book.class);
+            Root<Book> root = criteriaQuery.from(Book.class);
+
+            Predicate predicate = criteriaBuilder.conjunction();
+
+            criteriaQuery.select(root).where(predicate).orderBy(criteriaBuilder.asc(root.get("bookName")));
+            return entityManager.createQuery(criteriaQuery).getResultList();
+        }
+    }
+
+
+    @Override
     public void deleteByBookId(Long bookId) {
-        if (bookId == null) throw new IllegalArgumentException("Book ID cannot be null");
         try (EntityManager entityManager = EntityManagerFactoryProvider.getEntityManager()) {
             EntityTransaction transaction = entityManager.getTransaction();
-
-
             try {
                 transaction.begin();
                 Book book = entityManager.find(Book.class, bookId);

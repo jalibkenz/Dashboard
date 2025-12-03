@@ -41,7 +41,7 @@ public class AuthServlet extends HttpServlet {
         // SUCCESS → create session and show dashboard
         HttpSession session = req.getSession(true);
         session.setAttribute("loggedInUser", user);
-        resp.sendRedirect("dashboard.jsp");
+        resp.sendRedirect("dashboard");
 
 
     }

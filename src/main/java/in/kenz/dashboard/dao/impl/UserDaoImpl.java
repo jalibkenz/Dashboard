@@ -13,7 +13,6 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void save(User user) {
-        if (user == null) throw new IllegalArgumentException("User cannot be null");
         try (EntityManager entityManager = EntityManagerFactoryProvider.getEntityManager()) {
             EntityTransaction transaction = entityManager.getTransaction();
             try {
@@ -35,7 +34,6 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User findByUserId(Long userId) {
-        if (userId == null) throw new IllegalArgumentException("User Id cannot be null");
         try (EntityManager entityManager = EntityManagerFactoryProvider.getEntityManager()) {
             return entityManager.find(User.class, userId);
         }

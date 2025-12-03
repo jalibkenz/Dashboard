@@ -4,37 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="820e27c5-e842-4409-86cc-4d69431f30f9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/dao/BookDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/dao/LoanDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/dao/RoleDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/dao/UserDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/dao/impl/BookDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/dao/impl/LoanDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/dao/impl/RoleDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/dao/impl/UserDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/entity/Book.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/entity/Loan.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/entity/Role.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/entity/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/service/AuthService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/servlet/AuthServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/servlet/DashboardServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/servlet/SignupServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/util/EntityManagerFactoryProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/dashboard.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/signup.jsp" afterDir="false" />
+    <list default="true" id="820e27c5-e842-4409-86cc-4d69431f30f9" name="Changes" comment="WebApp_Login">
+      <change afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/service/BookService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/service/impl/BookServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/servlet/AddBookServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/dao/BookDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/dao/BookDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/dao/LoanDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/dao/LoanDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/dao/impl/BookDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/dao/impl/BookDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/dao/impl/LoanDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/dao/impl/LoanDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/dao/impl/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/dao/impl/UserDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/entity/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/entity/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/entity/Loan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/entity/Loan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/servlet/AuthServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/servlet/AuthServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/servlet/DashboardServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/servlet/DashboardServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/dashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/dashboard.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +36,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "jalibkenz"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/jalibkenz/Dashboard.git",
+    "accountId": "c71dda91-75e9-44fa-a214-c138f8fdf8cd"
+  }
+}]]></component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -131,5 +127,9 @@
       <updated>1764670423450</updated>
     </task>
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="WebApp_Login" />
+    <option name="LAST_COMMIT_MESSAGE" value="WebApp_Login" />
   </component>
 </project>
