@@ -4,24 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="820e27c5-e842-4409-86cc-4d69431f30f9" name="Changes" comment="Feature Added: Logout">
-      <change afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/service/LoanService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/service/impl/LoanServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/servlet/LoanBookServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/dashboard.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/images/library.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/logoutSwitch.js" afterDir="false" />
+    <list default="true" id="820e27c5-e842-4409-86cc-4d69431f30f9" name="Changes" comment="Login | Add Book | Loan | Logout">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/entity/Loan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/entity/Loan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/service/impl/BookServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/service/impl/BookServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/servlet/DashboardServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/servlet/DashboardServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/servlet/LogoutServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/servlet/LogoutServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/iphoneSwitch.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/iphoneSwitch.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/dashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/dashboard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/images/library.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/iphoneSwitch.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/logout.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/logout.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/signup.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/signup.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -147,13 +133,22 @@
       <option name="project" value="LOCAL" />
       <updated>1764753545202</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Login | Add Book | Loan | Logout">
+      <option name="closed" value="true" />
+      <created>1764767301619</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1764767301619</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="WebApp_Login" />
     <MESSAGE value="Feature Added: Add Book, List Books" />
     <MESSAGE value="Feature Added: Logout" />
-    <option name="LAST_COMMIT_MESSAGE" value="Feature Added: Logout" />
+    <MESSAGE value="Login | Add Book | Loan | Logout" />
+    <option name="LAST_COMMIT_MESSAGE" value="Login | Add Book | Loan | Logout" />
   </component>
 </project>

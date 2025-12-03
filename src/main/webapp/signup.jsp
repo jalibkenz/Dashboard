@@ -5,11 +5,16 @@
 <head>
     <title>Library Signup</title>
     <style>
+
+        * {
+            box-sizing: border-box;   /* IMPORTANT FIX */
+        }
         body {
             margin: 0;
             font-family: Arial, sans-serif;
             height: 100vh;
             display: flex;
+            overflow: hidden;
         }
 
         /* LEFT SIDE IMAGE */

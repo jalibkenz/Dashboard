@@ -3,8 +3,10 @@ package in.kenz.dashboard.servlet;
 import in.kenz.dashboard.entity.Book;
 import in.kenz.dashboard.entity.User;
 import in.kenz.dashboard.service.BookService;
+import in.kenz.dashboard.service.LoanService;
 import in.kenz.dashboard.service.impl.BookServiceImpl;
 
+import in.kenz.dashboard.service.impl.LoanServiceImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -17,6 +19,7 @@ import java.util.List;
 public class DashboardServlet extends HttpServlet {
 
     private final BookService bookService = new BookServiceImpl();
+    private final LoanService loanService = new LoanServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -40,9 +43,11 @@ public class DashboardServlet extends HttpServlet {
         List<Book> availableBooks;
 
         try {
-            loanedBooks = bookService.findLoanedBooks();       // books currently loaned
-            availableBooks = bookService.findAvailableBooks(); // books not loaned
 
+//            loanedBooks = bookService.findLoanedBooks();       // books currently loaned
+//            availableBooks = bookService.findAvailableBooks(); // books not loaned
+            loanedBooks = loanService.findLoanedBooksByUser(loggedInUser);
+            availableBooks = bookService.findAvailableBooks();
             if (loanedBooks == null) loanedBooks = new ArrayList<>();
             if (availableBooks == null) availableBooks = new ArrayList<>();
 
