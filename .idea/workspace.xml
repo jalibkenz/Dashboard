@@ -4,20 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="820e27c5-e842-4409-86cc-4d69431f30f9" name="Changes" comment="WebApp_Login">
-      <change afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/service/BookService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/service/impl/BookServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/servlet/AddBookServlet.java" afterDir="false" />
+    <list default="true" id="820e27c5-e842-4409-86cc-4d69431f30f9" name="Changes" comment="Feature Added: Add Book, List Books">
+      <change afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/servlet/LogoutServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/iphoneSwitch.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/iphoneSwitch.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/logout.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/dao/BookDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/dao/BookDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/dao/LoanDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/dao/LoanDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/dao/impl/BookDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/dao/impl/BookDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/dao/impl/LoanDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/dao/impl/LoanDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/dao/impl/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/dao/impl/UserDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/entity/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/entity/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/entity/Loan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/entity/Loan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/servlet/AuthServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/servlet/AuthServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/servlet/DashboardServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/in/kenz/dashboard/servlet/DashboardServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/dashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/dashboard.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -126,10 +118,20 @@
       <option name="presentableId" value="Default" />
       <updated>1764670423450</updated>
     </task>
+    <task id="LOCAL-00001" summary="Feature Added: Add Book, List Books">
+      <option name="closed" value="true" />
+      <created>1764748632359</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1764748632359</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="WebApp_Login" />
-    <option name="LAST_COMMIT_MESSAGE" value="WebApp_Login" />
+    <MESSAGE value="Feature Added: Add Book, List Books" />
+    <option name="LAST_COMMIT_MESSAGE" value="Feature Added: Add Book, List Books" />
   </component>
 </project>

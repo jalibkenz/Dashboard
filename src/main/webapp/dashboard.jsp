@@ -21,6 +21,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="css/iphoneSwitch.css">
   <title>Library Dashboard</title>
   <style>
     :root {
@@ -233,6 +234,14 @@
   <div class="header">
     <div class="welcome">Welcome, <%= loggedIn.getUserName() %>
     </div>
+    <div class="logout-wrapper">
+        <label class="ios-switch">
+            <input type="checkbox" id="logoutSwitch">
+            <span class="slider"></span>
+            <span class="label-text">Logout</span>
+        </label>
+    </div>
+
     <div class="profile" title="<%= loggedIn.getUserName() %>">
       <%= loggedIn.getUserName().substring(0,1).toUpperCase() %>
     </div>
@@ -354,6 +363,7 @@
     </section>
 
   </div>
+<script src="js/iphoneSwitch.js"></script>
 
 </body>
 

@@ -1,0 +1,53 @@
+/* iPhone Style Toggle Switch */
+
+.logout-wrapper {
+    margin: 20px;
+}
+
+.ios-switch {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.label-text {
+    margin-left: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #444;
+}
+
+.ios-switch input {
+    display: none;
+}
+
+.slider {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background: #ddd;
+    border-radius: 30px;
+    transition: 0.3s;
+}
+
+.slider::before {
+    content: "";
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    left: 2px;
+    top: 2px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+
+input:checked + .slider {
+    background: #34C759; /* iOS green */
+}
+
+input:checked + .slider::before {
+    transform: translateX(30px);
+}
