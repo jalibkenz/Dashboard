@@ -1,0 +1,212 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.left-side {
+    flex: 1 1 50%;
+    min-height: 100vh;
+    background-image: url('../images/library.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.right-side {
+    flex: 1 1 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f4f4f4;
+    padding: 20px;
+    position: relative;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 400px;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 40px 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    color: #333;
+}
+
+.login-box h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #222;
+    font-weight: 600;
+    font-size: 28px;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 15px;
+    margin-top: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    color: #333;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.login-box input:focus {
+    outline: none;
+    border-color: #0066ff;
+    box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+}
+
+.login-box input::placeholder {
+    color: rgba(51, 51, 51, 0.7);
+}
+
+.login-box button {
+    width: 100%;
+    padding: 15px;
+    background: rgba(0, 102, 255, 0.95);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.login-box button:hover {
+    background: rgba(0, 71, 179, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 102, 255, 0.3);
+}
+
+.signup {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.signup a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 12px 24px;
+    background: rgba(0, 102, 255, 0.9);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.signup a:hover {
+    background: rgba(0, 71, 179, 0.95);
+    transform: translateY(-1px);
+}
+
+.message {
+    padding: 12px 16px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    backdrop-filter: blur(10px);
+    font-weight: 500;
+}
+
+.error {
+    background: rgba(255, 230, 230, 0.9);
+    color: #c53030;
+    border: 1px solid rgba(204, 48, 48, 0.3);
+}
+
+.success {
+    background: rgba(230, 255, 234, 0.9);
+    color: #38a169;
+    border: 1px solid rgba(56, 161, 105, 0.3);
+}
+
+/* MOBILE & TABLET: Full page background + translucent login (with min-height 60vh for login-box) */
+@media (max-width: 1024px) {
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-image: url('../images/library.png');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        z-index: -2;
+    }
+
+    body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: -1;
+        }
+
+        .left-side {
+            display: none;
+        }
+
+        .right-side {
+            flex: 1 1 100%;
+            min-height: 100vh;
+            background: transparent;
+            padding: 20px;
+
+            /* Vertically center login box */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-box {
+            max-width: 90%;
+            min-height: 60vh; /* Ensure at least 60% viewport height */
+            padding: 30px 25px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(20px);
+
+            /* Center contents vertically inside the box */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+}
+
+/* DESKTOP ONLY: Side-by-side layout */
+@media (min-width: 1025px) {
+    body::before,
+    body::after {
+        display: none;
+    }
+    
+    .left-side {
+        display: block;
+    }
+    
+    .right-side {
+        background: #f8f9fa;
+    }
+}
