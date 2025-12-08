@@ -40,6 +40,7 @@ public class AuthServlet extends HttpServlet {
 
         // SUCCESS → create session and show dashboard
         HttpSession session = req.getSession(true);
+        //System.out.println("Role at login = " + user.getUserRole().getRoleName());
         session.setAttribute("loggedInUser", user);
         resp.sendRedirect("dashboard");
 

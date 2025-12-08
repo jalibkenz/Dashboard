@@ -80,6 +80,8 @@ public class UserDaoImpl implements UserDao {
 
     }
 
+
+
     @Override
     public User findByUserRoleName(String userRoleName) {
         if(userRoleName==null) throw new IllegalArgumentException("User RoleName cannot be null");

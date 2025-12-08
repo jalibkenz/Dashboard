@@ -1,27 +1,26 @@
 <%
-    // Set headers to prevent caching in modern browsers
+    // Prevent caching
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-
-    // Set header for compatibility with older HTTP 1.0 proxies/browsers
     response.setHeader("Pragma", "no-cache");
-
-    // Set header for expiration, usually set to a time in the past
     response.setDateHeader("Expires", 0);
 %>
-<%@ page import="java.util.*, in.kenz.dashboard.entity.User, in.kenz.dashboard.entity.Book" %>
+<%@ page import="java.util.*, in.kenz.dashboard.entity.User, in.kenz.dashboard.entity.Book, in.kenz.dashboard.entity.Role" %>
+
 <%
-    // session check
+    // SESSION: get logged in user
     User loggedIn = (User) session.getAttribute("loggedInUser");
     if (loggedIn == null) {
         response.sendRedirect("index.jsp?error=Please login first");
         return;
     }
 
+    // SAFELY extract roleName from the User object in session
+    String roleName=loggedIn.getUserRole().getRoleName();
+    // may be null if not initialized
 
-    // lists supplied by servlet
+    // Lists provided by servlet (safe defaults)
     List<Book> loanedBooks = (List<Book>) request.getAttribute("loanedBooks");
     if (loanedBooks == null) loanedBooks = new ArrayList<>();
-
 
     List<Book> availableBooks = (List<Book>) request.getAttribute("availableBooks");
     if (availableBooks == null) availableBooks = new ArrayList<>();
@@ -29,7 +28,6 @@
 
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -37,23 +35,22 @@
   <link rel="stylesheet" href="css/dashboard.css">
   <title>Library Dashboard</title>
 </head>
-
 <body>
 
   <div class="header">
-    <div class="welcome">Welcome, <%= loggedIn.getUserName() %>
+    <div class="welcome">
+      Welcome, <%= loggedIn.getUserName() %>
+      <br>
+      <span style="font-size:13px;color:#999;">Role: <strong><%= roleName %></strong></span>
     </div>
 
-
-
-<div class="logout-wrapper">
-    <label class="ios-switch">
-        <input type="checkbox" id="logoutSwitch">
-        <span class="slider"></span>
-        <span class="label-text">Logout</span>
-    </label>
-</div>
-
+    <div class="logout-wrapper">
+        <label class="ios-switch">
+            <input type="checkbox" id="logoutSwitch">
+            <span class="slider"></span>
+            <span class="label-text">Logout</span>
+        </label>
+    </div>
 
     <div class="profile" title="<%= loggedIn.getUserName() %>">
       <%= loggedIn.getUserName().substring(0,1).toUpperCase() %>
@@ -62,13 +59,13 @@
 
   <div class="app" role="application" aria-label="Library Dashboard">
 
-
-
-
-
-    <!-- LEFT column: Add book, Search (no loaned block here) -->
+    <!-- LEFT column: Add book, Search -->
     <div class="left-stack">
-      <!-- Add Book -->
+
+      <%-- Show Add Book only if roleName is NOT "student" and NOT "user" --%>
+      <%
+        if (!"student".equalsIgnoreCase(roleName) && !"user".equalsIgnoreCase(roleName)) {
+      %>
       <section class="panel" aria-labelledby="addHeading">
         <h2 id="addHeading">Add New Book</h2>
         <form action="addBook" method="POST" autocomplete="off">
@@ -81,6 +78,7 @@
             <label for="author">Author</label>
             <input id="author" name="author" type="text" placeholder="Book written by" required />
           </div>
+
           <div>
             <label for="category">Category</label>
             <input id="category" name="category" type="text" placeholder="Book Genre" required />
@@ -92,13 +90,9 @@
           </div>
         </form>
       </section>
-
-
-
-
-
-
-
+      <%
+        } // end role check
+      %>
 
       <!-- Search Books -->
       <br>
@@ -114,11 +108,11 @@
       </section>
     </div>
 
-    <!-- RIGHT column: Top loaned pills + Available books list -->
+    <!-- RIGHT column -->
     <section class="panel" aria-labelledby="listHeading">
       <h2>My Loaned Books</h2>
 
-      <!-- LOANED PILLS: appear at top of right panel -->
+      <!-- LOANED PILLS -->
       <div class="loan-pills" role="list" aria-label="Books currently on loan">
         <%
             int pillCount = Math.min(loanedBooks.size(), 3);
@@ -136,7 +130,9 @@
         <%
             if (loanedBooks.size() > 3) {
         %>
-        <div style="font-weight:700;color:var(--muted);padding-left:6px;">+ <%= loanedBooks.size() - 3 %> more</div>
+        <div style="font-weight:700;color:var(--muted);padding-left:6px;">
+          + <%= loanedBooks.size() - 3 %> more
+        </div>
         <%
             }
         %>
@@ -145,7 +141,7 @@
       <h2>Books Available in Library</h2>
 
       <div style="margin-bottom:10px;color:var(--muted);font-size:13px">
-        Click Loan to lend the book, or Delete to remove it.
+        Click Loan to lend the book.
       </div>
 
       <div class="book-list" id="booksList">
@@ -161,20 +157,10 @@
           </div>
 
           <div class="row">
-
             <form action="loanBook" method="POST" style="margin:0">
               <input type="hidden" name="id" value="<%= b.getBookId() %>">
               <button class="btn" type="submit">Loan</button>
             </form>
-
-            <%--
-            <form action="deleteBook" method="POST" style="margin:0">
-                <input type="hidden" name="id" value="<%= b.getBookId() %>">
-                <button class="btn danger" type="submit">Delete</button>
-            </form>
-            --%>
-
-
           </div>
         </div>
         <%       } // end for
@@ -183,8 +169,8 @@
     </section>
 
   </div>
+
 <script src="js/logoutSwitch.js"></script>
 
 </body>
-
 </html>

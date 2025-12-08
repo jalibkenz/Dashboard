@@ -51,13 +51,14 @@ public class SignupServlet extends HttpServlet {
             return;
         }
 
-
+        Role role = roleService.findByRoleName(roleName);
 
         // CREATE USER
         User user = new User();// ← SAVE PLAIN PASSWORD
         user.setUserName(name);
         user.setUserUsername(username);
         user.setUserPassword(password);
+        user.setUserRole(role);
 
 
 

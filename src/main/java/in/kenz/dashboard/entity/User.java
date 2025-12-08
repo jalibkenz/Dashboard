@@ -10,18 +10,20 @@ public class User {
     private String userName;
     private String userUsername;
     private String userPassword;
-    @ManyToOne
-    private Role userRoleName;
+
+    @ManyToOne(fetch = FetchType.EAGER) // or EAGER per strategy below
+    @JoinColumn(name = "userRole_roleId", nullable = false) // explicit FK column name
+    private Role userRole;
 
     public User() {
     }
 
-    public User(Long userId, String userName, String userUsername, String userPassword, Role userRoleName) {
+    public User(Long userId, String userName, String userUsername, String userPassword, Role userRole) {
         this.userId = userId;
         this.userName = userName;
         this.userUsername = userUsername;
         this.userPassword = userPassword;
-        this.userRoleName = userRoleName;
+        this.userRole = userRole;
     }
 
 
@@ -31,7 +33,7 @@ public class User {
                 "userId=" + userId +
                 ", userName='" + userName + '\'' +
                 ", userUsername='" + userUsername + '\'' +
-                ", userRoleName=" + userRoleName +
+                ", userRole=" + userRole+
                 '}';
     }
 
@@ -67,11 +69,11 @@ public class User {
         this.userPassword = userPassword;
     }
 
-    public Role getUserRoleName() {
-        return userRoleName;
+    public Role getUserRole() {
+        return userRole;
     }
 
-    public void setUserRoleName(Role userRoleName) {
-        this.userRoleName = userRoleName;
+    public void setUserRole(Role userRole) {
+        this.userRole = userRole;
     }
 }
