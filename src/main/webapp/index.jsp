@@ -35,7 +35,7 @@
 
         <div class="signup">
             Don't have an account?
-            <a href="signup.jsp">Sign Up</a>
+            <a href="signup">Sign Up</a>
         </div>
     </div>
 </div>

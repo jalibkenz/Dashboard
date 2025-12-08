@@ -25,7 +25,6 @@ public class DashboardServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        System.out.println("Dashboard Servlet is executed");
         // 1. Login check
         HttpSession session = req.getSession(false);
         User loggedInUser = (session != null)

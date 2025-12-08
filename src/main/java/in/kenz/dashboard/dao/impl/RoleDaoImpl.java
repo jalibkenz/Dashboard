@@ -1,14 +1,18 @@
 package in.kenz.dashboard.dao.impl;
 
 import in.kenz.dashboard.dao.RoleDao;
+import in.kenz.dashboard.entity.Loan;
 import in.kenz.dashboard.entity.Role;
 import in.kenz.dashboard.util.EntityManagerFactoryProvider;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
+
+import java.util.List;
 
 public class RoleDaoImpl implements RoleDao {
 
@@ -61,6 +65,18 @@ public class RoleDaoImpl implements RoleDao {
             criteriaQuery.select(root).where(predicate);
 
             return entityManager.createQuery(criteriaQuery).getSingleResult();
+        }
+    }
+
+    @Override
+    public List<Role> findAll() {
+        try (EntityManager em = EntityManagerFactoryProvider.getEntityManager()) {
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery<Role> cq = cb.createQuery(Role.class);
+            Root<Role> root = cq.from(Role.class);
+            cq.select(root).orderBy(cb.asc(root.get("roleName")));
+            TypedQuery<Role> q = em.createQuery(cq);
+            return q.getResultList();
         }
     }
 

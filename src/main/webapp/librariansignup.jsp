@@ -1,14 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.net.URLDecoder, java.util.List" %>
+<%@ page import="java.net.URLDecoder" %>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Library Signup</title>
     <style>
-        /* ... (Your existing CSS here, NO CHANGES NEEDED) ... */
 
         * {
-            box-sizing: border-box;
+            box-sizing: border-box;   /* IMPORTANT FIX */
         }
         body {
             margin: 0;
@@ -21,7 +20,7 @@
         /* LEFT SIDE IMAGE */
         .left-side {
             flex: 1;
-            background-image: url('images/library.png');
+            background-image: url('images/library.png'); /* same image as index.jsp */
             background-size: cover;
             background-position: center;
         }
@@ -48,8 +47,7 @@
             margin-bottom: 20px;
         }
 
-        .signup-box input,
-        .signup-box select { /* Added 'select' here for consistent styling */
+        .signup-box input {
             width: 100%;
             padding: 12px;
             margin-top: 10px;
@@ -103,8 +101,10 @@
 
 <body>
 
+<!-- LEFT IMAGE -->
 <div class="left-side"></div>
 
+<!-- RIGHT SIGNUP FORM -->
 <div class="right-side">
 
     <div class="signup-box">
@@ -113,14 +113,6 @@
         <%
             String error = request.getParameter("error");
             String success = request.getParameter("success");
-
-            // Assuming 'roleNames' is a List<String> of available roles passed from the Servlet/Controller
-            @SuppressWarnings("unchecked")
-            List<String> roleNames = (List<String>) request.getAttribute("roleNames");
-            // 🌟 FIX: Check for null and initialize to an empty list 🌟
-            if (roleNames == null) {
-                roleNames = java.util.Collections.emptyList();
-            }
         %>
 
         <% if (error != null) { %>
@@ -132,22 +124,10 @@
         <% } %>
 
         <form action="signup" method="post">
-            <input type="text" name="name" placeholder="Full Name" required>
-            <input type="text" name="username" placeholder="Username" required>
+            <input type="text" name="name" placeholder="fullname" required>
+            <input type="text" name="username" placeholder="username" required>
             <input type="password" name="password" placeholder="Password (min 6 chars)" required>
             <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
-
-            <select name="roleName" required>
-                <option value="" disabled selected>Select Your Role</option>
-                <%
-                    // Loop through the list of role names fetched from the DB (via the servlet)
-                    for (String role : roleNames) {
-                %>
-                        <option value="<%= role %>"><%= role %></option>
-                <%
-                    }
-                %>
-            </select>
             <button type="submit">Create Account</button>
         </form>
 

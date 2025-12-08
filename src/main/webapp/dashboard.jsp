@@ -18,9 +18,6 @@
     }
 
 
-    // Print confirmation after successful validation
-    System.out.println("Session validated - DASHBOARD.JSP");
-
     // lists supplied by servlet
     List<Book> loanedBooks = (List<Book>) request.getAttribute("loanedBooks");
     if (loanedBooks == null) loanedBooks = new ArrayList<>();
